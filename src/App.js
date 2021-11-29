@@ -3,7 +3,6 @@ import { useState } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
-import About from "./components/About";
 import Alert from "./components/Alert";
 import {
   BrowserRouter,
@@ -26,7 +25,7 @@ function App() {
   };
 
   const toggleBlueMode = () => {
-    if (mode === "light") {
+    // if (mode === "light") {
       setMode("dark");
       document.body.style.backgroundColor = "rgb(44 51 86)";
       // document.title = "TextUtils - Dark mode";
@@ -37,16 +36,16 @@ function App() {
       // setInterval(() => {
       //   document.title = "Install TextUtils!!";
       // }, 1500)
-    } else {
-      setMode("light");
-      document.body.style.backgroundColor = "white";
-      // document.title = "TextUtils - Light mode";
-      showAlert("Light mode enabled", "success");
-    }
+    // } else {
+    //   setMode("light");
+    //   document.body.style.backgroundColor = "white";
+    //   // document.title = "TextUtils - Light mode";
+    //   showAlert("Light mode enabled", "success");
+    // }
   };
 
   const toggleGreenMode = () => {
-    if (mode === "light") {
+    // if (mode === "light") {
       setMode("dark");
       document.body.style.backgroundColor = "rgb(45 80 59)";
       // document.title = "TextUtils - Dark mode";
@@ -57,20 +56,26 @@ function App() {
       // setInterval(() => {
       //   document.title = "Install TextUtils!!";
       // }, 1500)
-    } else {
-      setMode("light");
-      document.body.style.backgroundColor = "white";
-      // document.title = "TextUtils - Light mode";
-      showAlert("Light mode enabled", "success");
-    }
+    // } else {
+      // setMode("light");
+      // document.body.style.backgroundColor = "white";
+      // // document.title = "TextUtils - Light mode";
+      // showAlert("Light mode enabled", "success");
+    // }
   };
+
+  const toggleLightMode = () => {
+    setMode("light");
+    document.body.style.backgroundColor = 'white';
+    showAlert("Light mode enabled", "success");
+  }
 
   return (
     //Code below is JSX -> just like HTML code but the reserved keywords of JS such as class can't be used as such
     <>
       <BrowserRouter>
         {/*fragment wrapper -> cannot add tags seperately, either group them into div or use fragment wrapper*/}
-        <Navbar title="MyApp" mode={mode} toggleBlueMode={toggleBlueMode} toggleGreenMode={toggleGreenMode}/>
+        <Navbar title="TextManipulator" mode={mode} toggleBlueMode={toggleBlueMode} toggleGreenMode={toggleGreenMode} toggleLightMode={toggleLightMode}/>
         <Alert alert={alert} />
         {/* <Navbar /> */}
           <Routes>
@@ -78,13 +83,12 @@ function App() {
               exact path="/"
               element={
                 <TextForm
-                  heading="Try TextUtils- Word counter, character counter, uppercase to lowercase, lowercase to uppercase, remove extra spaces"
+                  heading="Try TextManipulator- Word counter, character counter, uppercase to lowercase, lowercase to uppercase, remove extra spaces"
                   mode={mode}
                   showAlert={showAlert}
                 />
               }
             />
-            <Route exact path="/About" element={<About mode={mode} />} />
           </Routes>
         {/* <TextForm heading="Enter the text below" mode={mode} showAlert={showAlert}/> */}
         {/* <About mode={mode} /> */}
